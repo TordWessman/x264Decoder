@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{5937BDD1-772B-42C4-BDFF-D41CCC0C24BA}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>x264Decoder</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)H264Connection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)H264Parser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)I264Decoder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IH264Parser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SPSParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SpsReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ICameraView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)H264Exception.cs" />
+  </ItemGroup>
+</Project>
