@@ -3,6 +3,7 @@ using UIKit;
 using AVFoundation;
 using Foundation;
 using System.ComponentModel;
+using CoreGraphics;
 
 namespace x264Decoder {
 
@@ -38,6 +39,7 @@ namespace x264Decoder {
 
         public CameraView(IntPtr p) : base(p) { Setup(); }
         public CameraView() : base() { Setup(); }
+        public CameraView(CGRect frame) : base(frame) { Setup(); }
 
         ~CameraView() {
 
@@ -109,8 +111,6 @@ namespace x264Decoder {
             displayLayer.Frame = this.Bounds;
 
         }
-
-        
 
     }
 
