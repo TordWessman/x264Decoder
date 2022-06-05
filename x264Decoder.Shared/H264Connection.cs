@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
@@ -14,6 +15,9 @@ namespace x264Decoder {
         private bool isRunning;
         private const int MAX_ERROR = 10;
         private int errorCount = 0;
+        private int emptyReadCount = 0;
+
+        public int MaxEmptyReads = 100;
 
         /// <summary>
         /// Time in s before a pending connection dies.
@@ -56,6 +60,8 @@ namespace x264Decoder {
 
                         if (length > 0) {
 
+                            emptyReadCount = 0;
+
                             if (!parser.Parse(data, length) && errorCount++ % MAX_ERROR == 0) {
 
                                 Console.WriteLine($"** AVC ERROR ** Got to many errors: {errorCount}. Closing connection.");
@@ -63,6 +69,17 @@ namespace x264Decoder {
                                 Stop();
                                 return;
                    
+                            }
+
+                        } else {
+
+                            emptyReadCount++;
+
+                            if (emptyReadCount > MaxEmptyReads) {
+
+                                Stop();
+                                OnError(new IOException("** AVC ERROR ** got no data."));
+
                             }
 
                         }
